@@ -1,0 +1,33 @@
+server:
+  port: 8084
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: medical-stock-service
+          uri: lb://medical-stock-service
+          predicates:
+            - Path=/MedicineStockInformation
+
+        - id: authorization-service
+          uri: lb://authorization-service
+          predicates:
+            - Path=/auth/**
+
+        - id: schedule-service
+          uri: lb://schedule-service
+          predicates:
+            - Path=/RepSchedule/**
+
+        - id: supply-service
+          uri: lb://supply-service
+          predicates:
+            - Path=/PharmacySupply/**
+
+
+eureka:
+  instance:
+    hostname: localhost
