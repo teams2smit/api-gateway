@@ -10,7 +10,7 @@ spring:
         - id: medical-stock-service
           uri: lb://medical-stock-service
           predicates:
-            - Path=/MedicineStockInformation
+            - Path=/stock/**
 
         - id: authorization-service
           uri: lb://authorization-service
@@ -20,12 +20,12 @@ spring:
         - id: schedule-service
           uri: lb://schedule-service
           predicates:
-            - Path=/RepSchedule/**
+            - Path=/schedule/**
 
         - id: supply-service
           uri: lb://supply-service
           predicates:
-            - Path=/PharmacySupply/**
+            - Path=/supply/**
 
 
 eureka:
