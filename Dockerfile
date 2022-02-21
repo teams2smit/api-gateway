@@ -1,4 +1,4 @@
-FROM openjdk:8
-ADD target/pmsapigateway.jar pmsapigateway.jar
+FROM adoptopenjdk/openjdk8
+ADD target/pms-api-gateway.jar pms-api-gateway.jar
 EXPOSE 8084
-ENTRYPOINT ["java","-jar","pmsapigateway.jar"]
+ENTRYPOINT ["java","-jar","pms-api-gateway.jar"]

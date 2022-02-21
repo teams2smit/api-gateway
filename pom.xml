@@ -67,7 +67,7 @@
     </dependencyManagement>
 
     <build>
-        <finalName>pmsapigateway</finalName>
+        <finalName>pms-api-gateway</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
