@@ -1,61 +1,13 @@
 server:
   port: 8084
-
-hystrix:
-  command:
-    fallbackcmd:
-      execution:
-        isolation:
-          thread:
-            timeoutInMillieseconds: 5000
-
 spring:
   application:
     name: api-gateway
   cloud:
     gateway:
-      routes:
-        - id: medical-stock-service
-          uri: lb://medical-stock-service
-          predicates:
-            - Path=/stock/**
-          filters:
-            - name : CircuitBreaker
-              args:
-                name: stock-service
-                fallbackuri: forward:/stock-service-fallback
-
-        - id: authorization-service
-          uri: lb://authorization-service
-          predicates:
-            - Path=/auth/**
-          filters:
-            - name: CircuitBreaker
-              args:
-                name: stock-service
-                fallbackuri: forward:/auth-service-fallback
-
-        - id: schedule-service
-          uri: lb://schedule-service
-          predicates:
-            - Path=/schedule/**
-          filters:
-            - name: CircuitBreaker
-              args:
-                name: stock-service
-                fallbackuri: forward:/schedule-service-fallback
-
-        - id: supply-service
-          uri: lb://supply-service
-          predicates:
-            - Path=/supply/**
-          filters:
-            - name: CircuitBreaker
-              args:
-                name: stock-service
-                fallbackuri: forward:/supply-service-fallback
-
-
+      discovery:
+        locator:
+          lower-case-service-id: true
 eureka:
   instance:
     hostname: localhost
